@@ -1,0 +1,35 @@
+﻿@model IEnumerable<BlogApplication.Models.Blog>
+
+<div class="table-responsive">
+    <table class="table table-bordered table-striped table-hover">
+        <thead>
+            <tr>
+                <th width="100">@Html.DisplayNameFor(model => model.title) </th>
+                <th>@Html.DisplayNameFor(model => model.body)</th>
+                <th>@Html.DisplayNameFor(model => model.writer)</th>
+                <th>@Html.DisplayNameFor(model => model.category)</th>
+                <th>@Html.DisplayNameFor(model => model.datePublished)</th>
+                <th>Actions</th>
+
+            </tr>
+        </thead>
+        @foreach(var item in Model)
+        {
+            <tbody>
+                <tr>
+                    <td>@(item.title.Length >=20 ? item.title.ToString().Substring(0, 20) + "..." : item.title)</td>
+                    <td>@(item.body.Length >=50 ? item.title.ToString().Substring(0, 50) + "..." : item.body)</td>
+                    <td>@String.Format("{0:D}", item.datePublished)</td>
+                    <td>@Html.DisplayFor(model => item.writer) </td>
+
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.blogid})
+                        @Html.ActionLink("Delete", "Delete", new { id = item.blogid})
+
+
+                    </td>
+                </tr>
+            </tbody>
+        }
+    </table>
+</div>
